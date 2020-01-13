@@ -1,0 +1,37 @@
+{% extends 'speed_checker/base.html' %}
+{% load static %}
+
+{% block content %}
+<div>
+    <h1>        
+        <p>No：{{ pokemon.id }}　名前：{{ pokemon.name }}</p>
+    </h1>
+    <h3>
+        <p id="weight_or_height">
+        <script src="{% static 'javascript/test.js' %}">
+        var weight = {{ pokemon.weight }};
+        </script>
+        </p>
+    </h3>
+
+    {% for stat in pokemon.stats reversed %}
+    <div>
+        <p>{{ stat.stat.name }}:{{ stat.base_stat }}</p>
+    </div>        
+    {% endfor %}
+
+    <!-- {{ pokemon.stats.0.base_stat }} -->
+</div>
+{% endblock %}
+
+{% block content2 %}
+<div>
+    {% for ability in pokemon.abilities %}
+    <div>
+        <p>{{ ability.ability.name }}</p>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}
