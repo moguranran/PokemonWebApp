@@ -1,5 +1,3 @@
-import TypeColor from 'type-color.js';
-
 document.write("Hello1");
 
 var id_doc = document.getElementsByClassName("type");
