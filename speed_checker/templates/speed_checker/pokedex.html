@@ -1,27 +1,43 @@
 {% extends 'speed_checker/base.html' %}
 {% load static %}
+{% load mathfilters %}
 
 {% block content %}
-<div>
     <h1>        
-        <p>No：{{ pokemon.id }}　名前：{{ pokemon.name }}</p>
+        <p>名前：{{ pokemon.name }}</p>
     </h1>
-    <h3>
-        <p id="weight_or_height">
-        <script src="{% static 'javascript/test.js' %}">
-        var weight = {{ pokemon.weight }};
+    <h2>
+        <div id="id">No：{{ pokemon.id }}</div><br>
+        <div>
+            タイプ
+            <div class="type">{{ pokemon.types.0.type.name }}　{{ pokemon.types.1.type.name }}</div>
+        </div>
+            <!-- <input type="hidden" id="pokemon_type_0" name="pokemon_type_0" value="{{ pokemon.types.0.type.name }}"> -->
+        <script type="text/javascript" src="{% static 'js/test.js' %}" >
+        // var types = "{{ pokemon.types.0.type.name }}"
         </script>
-        </p>
+    </h2>
+    <h3>
+        高さ：{{ pokemon.height | mul:0.1 | floatformat:1 }}m　重さ：{{ pokemon.weight | mul:0.1 | floatformat:1 }}kg
     </h3>
 
-    {% for stat in pokemon.stats reversed %}
+    <!-- {% for stat in pokemon.stats reversed %}
     <div>
         <p>{{ stat.stat.name }}:{{ stat.base_stat }}</p>
-    </div>        
-    {% endfor %}
+    </div>
+    {% endfor %} -->
+    
+    <div class="status">
+        <div class="status_h">H：{{ pokemon.stats.5.base_stat }}</div>
+        <div class="status_a">A：{{ pokemon.stats.4.base_stat }}</div>
+        <div class="status_b">B：{{ pokemon.stats.3.base_stat }}</div>
+        <div class="status_c">C：{{ pokemon.stats.2.base_stat }}</div class="stats">  
+        <div class="status_d">D：{{ pokemon.stats.1.base_stat }}</div class="stats">
+        <div class="status_s">S：{{ pokemon.stats.0.base_stat }}</div class="stats">
+    </div>
+            
 
     <!-- {{ pokemon.stats.0.base_stat }} -->
-</div>
 {% endblock %}
 
 {% block content2 %}
@@ -32,6 +48,4 @@
     </div>
     {% endfor %}
 </div>
-
-
 {% endblock %}

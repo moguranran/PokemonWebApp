@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'speed_checker.apps.SpeedCheckerConfig',
     'pokebase',
+    'mathfilters',
 ]
 
 MIDDLEWARE = [
