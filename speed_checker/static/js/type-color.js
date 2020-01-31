@@ -54,13 +54,10 @@ function makeColor(type) {
     return color;
 }
 
-document.writeln("test1");
 var typeDocument = document.getElementsByClassName("type");
 var type0 = document.getElementById("pokemon_type_0").value;
 var type1 = document.getElementById("pokemon_type_1").value;
 typeDocument[0].style.backgroundColor = makeColor(type0)
 typeDocument[1].style.backgroundColor = makeColor(type1)
 
-document.writeln("test2");
-document.writeln(type0);
-document.writeln("test3");
+document.write("Hello")

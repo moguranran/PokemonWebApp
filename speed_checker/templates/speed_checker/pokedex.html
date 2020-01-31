@@ -10,14 +10,13 @@
         <div id="id">No：{{ pokemon.id }}</div><br>
         <div>
             タイプ
-            <div class="type">{{ pokemon.types.0.type.name }}</div>
-            <div class="type">{{ pokemon.types.1.type.name }}</div>
+            <span class="type">{{ pokemon.types.0.type.name }}</span>
+            <span class="type">{{ pokemon.types.1.type.name }}</span>
         </div>
             <input type="hidden" id="pokemon_type_0" name="pokemon_type_0" value="{{ pokemon.types.0.type.name }}">
             <input type="hidden" id="pokemon_type_1" name="pokemon_type_1" value="{{ pokemon.types.1.type.name }}">
         </div>
         <script type="text/javascript" src="{% static 'js/type-color.js' %}" >
-        // var types = "{{ pokemon.types.0.type.name }}"
         </script>
     </h2>
     <h3>
@@ -30,23 +29,21 @@
     </div>
     {% endfor %} -->
     
-    <div class="status">
-        <div class="status_h">H：{{ pokemon.stats.5.base_stat }}</div>
-        <div class="status_a">A：{{ pokemon.stats.4.base_stat }}</div>
-        <div class="status_b">B：{{ pokemon.stats.3.base_stat }}</div>
-        <div class="status_c">C：{{ pokemon.stats.2.base_stat }}</div>  
-        <div class="status_d">D：{{ pokemon.stats.1.base_stat }}</div">
-        <div class="status_s">S：{{ pokemon.stats.0.base_stat }}</div">
-    </div>
+    <span class="status">
+        <span class="status_h">H：{{ pokemon.stats.5.base_stat }}</span>
+        <span class="status_a">A：{{ pokemon.stats.4.base_stat }}</span>
+        <span class="status_b">B：{{ pokemon.stats.3.base_stat }}</span>
+        <span class="status_c">C：{{ pokemon.stats.2.base_stat }}</span>  
+        <span class="status_d">D：{{ pokemon.stats.1.base_stat }}</span>
+        <span class="status_s">S：{{ pokemon.stats.0.base_stat }}</span>
+    </span><br>
             
 {% endblock %}
 
 {% block content2 %}
 <div>
     {% for ability in pokemon.abilities %}
-    <div>
-        <p>{{ ability.ability.name }}</p>
-    </div>
+        <span>特性 {{ ability.ability.name }}</span>
     {% endfor %}
 </div>
 {% endblock %}
