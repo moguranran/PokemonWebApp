@@ -8,7 +8,7 @@ import datetime
 
 class IndexView(generic.TemplateView):
     template_name = 'speed_checker/pokedex.html'
-    index = random.randint(1, 809)
+    index = random.randint(1, 808)
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)

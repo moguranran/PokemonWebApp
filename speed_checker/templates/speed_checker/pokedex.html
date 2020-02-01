@@ -4,46 +4,48 @@
 
 {% block content %}
     <h1>        
-        <p>名前：{{ pokemon.name }}</p>
+        No.{{ pokemon.id }}　名前：{{ pokemon.name }}
     </h1>
-    <h2>
-        <div id="id">No：{{ pokemon.id }}</div><br>
+    <h2>        
         <div>
-            タイプ
-            <span class="type">{{ pokemon.types.0.type.name }}</span>
-            <span class="type">{{ pokemon.types.1.type.name }}</span>
+            タイプ1
+            <span class="type"> {{ pokemon.types.0.type.name }}</span>
+            {% if pokemon.types.1.type.name %}
+            タイプ2
+            <span class="type"> {{ pokemon.types.1.type.name }}</span>
+            {% endif %}
         </div>
+        <div>
             <input type="hidden" id="pokemon_type_0" name="pokemon_type_0" value="{{ pokemon.types.0.type.name }}">
             <input type="hidden" id="pokemon_type_1" name="pokemon_type_1" value="{{ pokemon.types.1.type.name }}">
         </div>
-        <script type="text/javascript" src="{% static 'js/type-color.js' %}" >
-        </script>
+        <script type="text/javascript" src="{% static 'js/type-color-set.js' %}" ></script>
     </h2>
     <h3>
         高さ：{{ pokemon.height | mul:0.1 | floatformat:1 }}m　重さ：{{ pokemon.weight | mul:0.1 | floatformat:1 }}kg
     </h3>
-
-    <!-- {% for stat in pokemon.stats reversed %}
-    <div>
-        <p>{{ stat.stat.name }}:{{ stat.base_stat }}</p>
-    </div>
-    {% endfor %} -->
     
-    <span class="status">
-        <span class="status_h">H：{{ pokemon.stats.5.base_stat }}</span>
-        <span class="status_a">A：{{ pokemon.stats.4.base_stat }}</span>
-        <span class="status_b">B：{{ pokemon.stats.3.base_stat }}</span>
-        <span class="status_c">C：{{ pokemon.stats.2.base_stat }}</span>  
-        <span class="status_d">D：{{ pokemon.stats.1.base_stat }}</span>
-        <span class="status_s">S：{{ pokemon.stats.0.base_stat }}</span>
-    </span><br>
+    <h3>
+        <p span class="status">
+            <span class="status_h">H：{{ pokemon.stats.5.base_stat }}</span>
+            <span class="status_a">A：{{ pokemon.stats.4.base_stat }}</span>
+            <span class="status_b">B：{{ pokemon.stats.3.base_stat }}</span>
+            <span class="status_c">C：{{ pokemon.stats.2.base_stat }}</span>  
+            <span class="status_d">D：{{ pokemon.stats.1.base_stat }}</span>
+            <span class="status_s">S：{{ pokemon.stats.0.base_stat }}</span>
+        </p span>
+    </h3>
             
 {% endblock %}
 
 {% block content2 %}
-<div>
-    {% for ability in pokemon.abilities %}
-        <span>特性 {{ ability.ability.name }}</span>
-    {% endfor %}
-</div>
+
+<h3>
+    <div>
+        特性
+            {% for ability in pokemon.abilities %}
+                <span>{{ ability.ability.name }}</span>
+            {% endfor %}
+    </div>
+</h3>
 {% endblock %}
