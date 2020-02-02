@@ -34,18 +34,19 @@
             <span class="status_d">D：{{ pokemon.stats.1.base_stat }}</span>
             <span class="status_s">S：{{ pokemon.stats.0.base_stat }}</span>
         </p span>
+
+        <div>
+            特性
+                {% for ability in pokemon.abilities %}
+                    <span>{{ ability.ability.name }}</span>
+                {% endfor %}
+        </div>
     </h3>
-            
 {% endblock %}
 
 {% block content2 %}
-
-<h3>
-    <div>
-        特性
-            {% for ability in pokemon.abilities %}
-                <span>{{ ability.ability.name }}</span>
-            {% endfor %}
-    </div>
-</h3>
+<button class="speed calculate" type="button">
+    スピードチェック
+</button>
+<div id="output"></div>
 {% endblock %}
