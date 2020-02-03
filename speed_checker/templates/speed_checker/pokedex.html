@@ -23,16 +23,14 @@
     </h2>
     <h3>
         高さ：{{ pokemon.height | mul:0.1 | floatformat:1 }}m　重さ：{{ pokemon.weight | mul:0.1 | floatformat:1 }}kg
-    </h3>
-    
-    <h3>
+
         <p span class="status">
-            <span class="status_h">H：{{ pokemon.stats.5.base_stat }}</span>
-            <span class="status_a">A：{{ pokemon.stats.4.base_stat }}</span>
-            <span class="status_b">B：{{ pokemon.stats.3.base_stat }}</span>
-            <span class="status_c">C：{{ pokemon.stats.2.base_stat }}</span>  
-            <span class="status_d">D：{{ pokemon.stats.1.base_stat }}</span>
-            <span class="status_s">S：{{ pokemon.stats.0.base_stat }}</span>
+            <span id="status_h" value="{{ pokemon.stats.5.base_stat }}">H：{{ pokemon.stats.5.base_stat }}</span>
+            <span id="status_a" value="{{ pokemon.stats.4.base_stat }}">A：{{ pokemon.stats.4.base_stat }}</span>
+            <span id="status_b" value="{{ pokemon.stats.3.base_stat }}">B：{{ pokemon.stats.3.base_stat }}</span>
+            <span id="status_c" value="{{ pokemon.stats.2.base_stat }}">C：{{ pokemon.stats.2.base_stat }}</span>  
+            <span id="status_d" value="{{ pokemon.stats.1.base_stat }}">D：{{ pokemon.stats.1.base_stat }}</span>
+            <span id="status_s" value="{{ pokemon.stats.0.base_stat }}">S：{{ pokemon.stats.0.base_stat }}</span>
         </p span>
 
         <div>
@@ -45,8 +43,23 @@
 {% endblock %}
 
 {% block content2 %}
-<button class="speed calculate" type="button">
-    スピードチェック
-</button>
-<div id="output"></div>
+<script type="text/javascript" src="{% static 'js/speed-calculate.js' %}" ></script>
+<form method="GET" name="status_form">
+    個体値
+    <select size="1" name="individual" onchange="getSpeed('{{ pokemon.stats.0.base_stat }}')">
+        {% for i in individual_range %}
+        <option value={{i}}>{{i}}</option>
+        {% endfor %}
+        <option value=31 selected>31</option>
+    </select>
+    努力値
+    <select id="effort_value" name="effort_value" size="1" onchange="getSpeed('{{ pokemon.stats.0.base_stat }}')">
+        {% for i in effort_range %}
+        <option value={{i}}>{{i}}</option>
+        {% endfor %}
+        <option value="252" selected>252</option>
+    </select><br>    
+    実数値（Lv50)
+    <output id="speed_value_output" name="speed_value_output"></output><br>
+</form>
 {% endblock %}
